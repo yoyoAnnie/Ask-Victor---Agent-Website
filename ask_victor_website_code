@@ -1,0 +1,425 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { Play, ArrowRight, TrendingUp, Brain, ShieldAlert, ChevronRight, Lock, Activity, CheckCircle, BarChart3 } from 'lucide-react';
+
+/**
+ * VICTOR SMART AGENT INTERFACE
+ * Design Philosophy: "Institutional Noir"
+ * Aesthetic: Blackstone / Michelle Gore / High-End Portfolio
+ * Tone: London/Wall Street, Authoritative, Precision
+ */
+
+// --- Components ---
+
+// 1. Navigation
+const Navigation = ({ activeSection, scrollTo }) => (
+  <nav className="fixed top-0 w-full z-50 mix-blend-difference text-white px-6 py-6 flex justify-between items-center backdrop-blur-sm bg-black/20 border-b border-white/10">
+    <div className="text-2xl font-serif tracking-tighter font-bold cursor-pointer" onClick={() => scrollTo('hero')}>
+      VICTOR.
+    </div>
+    <div className="hidden md:flex space-x-8 text-xs font-mono tracking-widest uppercase">
+      {['Philosophy', 'Science', 'Calibration', 'Access'].map((item) => (
+        <button 
+          key={item} 
+          onClick={() => scrollTo(item.toLowerCase())}
+          className="hover:text-amber-500 transition-colors duration-300"
+        >
+          {item}
+        </button>
+      ))}
+    </div>
+    <div className="text-xs font-mono text-amber-500 border border-amber-500/30 px-3 py-1 rounded-sm">
+      BETA v1.04
+    </div>
+  </nav>
+);
+
+// 2. Hero Section
+const Hero = ({ onStart }) => (
+  <section id="hero" className="min-h-screen flex flex-col justify-center px-6 md:px-20 bg-[#0a0a0a] relative overflow-hidden">
+    {/* Abstract Background Element */}
+    <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#111] to-transparent opacity-50 pointer-events-none" />
+    
+    <div className="z-10 max-w-4xl space-y-8 animate-fade-in-up">
+      <div className="flex items-center space-x-4 text-amber-500/80 mb-4">
+        <Activity size={16} />
+        <span className="text-xs font-mono tracking-widest uppercase">System Online • London • SF • NYC</span>
+      </div>
+      
+      <h1 className="text-6xl md:text-8xl font-serif text-white leading-[0.9] tracking-tight">
+        Ask Victor.
+        <br />
+        <span className="text-gray-500">Human Wisdom.</span>
+        <br />
+        <span className="text-gray-500">AI Precision.</span>
+      </h1>
+      
+      <div className="h-px w-24 bg-amber-600 my-8" />
+      
+      <p className="text-lg md:text-xl text-gray-300 font-light max-w-2xl leading-relaxed">
+        I’ve “downloaded my brain” into a probability engine.
+        I am here to hedge the one asset your family office is ignoring: <span className="text-white font-medium border-b border-amber-500/50">Your own neurology.</span>
+      </p>
+
+      <div className="pt-8">
+        <button 
+          onClick={onStart}
+          className="group relative px-8 py-4 bg-transparent border border-white/20 text-white font-mono text-sm tracking-widest uppercase overflow-hidden transition-all hover:border-amber-500 hover:text-amber-500"
+        >
+          <span className="relative z-10 flex items-center gap-4">
+            Initialize Calibration <ArrowRight size={16} />
+          </span>
+        </button>
+      </div>
+    </div>
+  </section>
+);
+
+// 3. The Rationale (Science)
+const Rationale = () => (
+  <section id="science" className="min-h-screen flex flex-col md:flex-row bg-[#0f0f0f] text-white">
+    {/* Left: The Persona */}
+    <div className="w-full md:w-1/2 p-12 md:p-24 flex flex-col justify-center border-r border-white/5 relative">
+      <div className="absolute top-12 left-12 text-6xl font-serif opacity-10">01</div>
+      <h2 className="text-4xl md:text-5xl font-serif mb-8">Hi, I'm Victor.</h2>
+      <p className="text-gray-400 text-lg leading-relaxed mb-6">
+        Strategist. Quantitative Researcher. Your Limited Partner.
+      </p>
+      <p className="text-gray-400 leading-relaxed mb-6">
+        I have spent forty years navigating the liquidity premiums of private equity and the volatility of public markets. I have seen fortunes made on data and lost on emotion.
+      </p>
+      <p className="text-gray-200 font-serif text-xl italic border-l-2 border-amber-500 pl-6 my-4">
+        "I do not ask you what you want. I observe how you think."
+      </p>
+    </div>
+
+    {/* Right: The Science */}
+    <div className="w-full md:w-1/2 p-12 md:p-24 flex flex-col justify-center bg-[#0a0a0a]">
+      <div className="space-y-12">
+        <div className="space-y-4">
+          <div className="flex items-center gap-3 text-amber-500 mb-2">
+            <Brain size={20} />
+            <span className="text-xs font-mono uppercase tracking-widest">The Banavar Protocol (2025)</span>
+          </div>
+          <h3 className="text-3xl font-serif text-white">The Biological Hedge</h3>
+          <p className="text-gray-400 leading-relaxed">
+            Research confirms that as we mature, the prefrontal cortex optimizes for efficiency, leading to <strong className="text-white">"Sequential Dependencies."</strong> We prioritize recent inputs ("Last In, First Out").
+          </p>
+        </div>
+
+        <div className="space-y-4">
+          <div className="flex items-center gap-3 text-amber-500 mb-2">
+            <ShieldAlert size={20} />
+            <span className="text-xs font-mono uppercase tracking-widest">The Flaw</span>
+          </div>
+          <h3 className="text-3xl font-serif text-white">Perseveration</h3>
+          <p className="text-gray-400 leading-relaxed">
+            You think you are being strategic; you are often just repeating patterns to conserve energy. Standard questionnaires cannot detect this.
+          </p>
+        </div>
+        
+        <div className="p-6 border border-white/10 bg-white/5 rounded-sm">
+          <p className="text-sm font-mono text-gray-300">
+            <span className="text-amber-500">VICTOR'S FUNCTION:</span> To separate your Habit from your Intent by measuring your reaction to Ambiguity vs. Risk.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
+// 4. The Game (Two-Armed Bandit)
+const CalibrationGame = ({ onComplete }) => {
+  const [round, setRound] = useState(1);
+  const [history, setHistory] = useState([]);
+  const [showFeedback, setShowFeedback] = useState(null);
+  const [loading, setLoading] = useState(false);
+  
+  const totalRounds = 5;
+
+  const handleChoice = (type) => {
+    setLoading(true);
+    // Simulate API/Algorithmic delay
+    setTimeout(() => {
+      const isRisk = type === 'risk';
+      const outcome = isRisk 
+        ? (Math.random() > 0.4 ? 10000 : 0) // 60% chance
+        : (Math.random() > 0.5 ? 20000 : 0); // Unknown chance, higher payoff
+
+      const newHistory = [...history, { round, type, outcome }];
+      setHistory(newHistory);
+      setLoading(false);
+      
+      // Feedback logic mimics "Victor" analyzing
+      let feedbackMsg = "";
+      if (type === 'ambiguity') {
+        feedbackMsg = "Interesting. You rejected the known yield for the opaque upside. Capturing ambiguity tolerance...";
+      } else {
+        feedbackMsg = "Standard deviation minimized. You prefer the known variable. Logging risk aversion...";
+      }
+      
+      setShowFeedback(feedbackMsg);
+
+      setTimeout(() => {
+        setShowFeedback(null);
+        if (round < totalRounds) {
+          setRound(round + 1);
+        } else {
+          onComplete(newHistory);
+        }
+      }, 2500);
+
+    }, 800);
+  };
+
+  return (
+    <section id="calibration" className="min-h-screen flex flex-col items-center justify-center bg-[#050505] text-white px-6 relative">
+      
+      {/* HUD */}
+      <div className="absolute top-24 w-full px-12 flex justify-between items-end border-b border-white/10 pb-4">
+        <div>
+          <h2 className="text-sm font-mono text-gray-500 uppercase tracking-widest mb-1">Calibration Protocol</h2>
+          <div className="text-2xl font-serif">Vintage Fund Allocation</div>
+        </div>
+        <div className="text-right font-mono text-amber-500">
+          TURN {round} <span className="text-gray-600">/ {totalRounds}</span>
+        </div>
+      </div>
+
+      {/* Victor's Voice (Feedback Overlay) */}
+      {showFeedback && (
+        <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md animate-fade-in">
+          <div className="max-w-xl text-center space-y-6">
+            <div className="w-12 h-12 border border-amber-500 rounded-full flex items-center justify-center mx-auto mb-6 animate-pulse">
+              <span className="font-serif text-2xl text-amber-500">V</span>
+            </div>
+            <p className="text-2xl font-serif text-white italic leading-relaxed">
+              "{showFeedback}"
+            </p>
+            <div className="text-xs font-mono text-amber-500 uppercase tracking-widest mt-4">
+              Updating Neural Weights...
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* The Cards */}
+      <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl transition-opacity duration-500 ${loading || showFeedback ? 'opacity-20 blur-sm' : 'opacity-100'}`}>
+        
+        {/* OPTION A: RISK */}
+        <button 
+          onClick={() => handleChoice('risk')}
+          className="group relative h-96 border border-white/10 bg-[#111] hover:bg-[#161616] hover:border-amber-500/50 transition-all duration-500 flex flex-col items-center justify-center p-8 text-left"
+        >
+          <div className="absolute top-6 left-6 text-xs font-mono text-gray-500 group-hover:text-white transition-colors">
+            OPTION A: PUBLIC EQUITY
+          </div>
+          
+          <div className="w-24 h-24 border border-white/20 rounded-full flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500">
+            <div className="w-12 h-12 bg-white/10 rounded-sm" />
+          </div>
+          
+          <div className="space-y-2 text-center">
+            <div className="text-3xl font-serif">60% Probability</div>
+            <div className="text-sm font-mono text-gray-400">Return: $10,000</div>
+            <div className="mt-6 inline-block px-4 py-2 border border-white/10 text-xs font-mono uppercase tracking-widest group-hover:bg-white group-hover:text-black transition-colors">
+              Accept Variance
+            </div>
+          </div>
+        </button>
+
+        {/* OPTION B: AMBIGUITY */}
+        <button 
+          onClick={() => handleChoice('ambiguity')}
+          className="group relative h-96 border border-white/10 bg-[#111] hover:bg-[#161616] hover:border-amber-500/50 transition-all duration-500 flex flex-col items-center justify-center p-8 text-left"
+        >
+          <div className="absolute top-6 left-6 text-xs font-mono text-gray-500 group-hover:text-white transition-colors">
+            OPTION B: PRIVATE VENTURE
+          </div>
+          
+          <div className="w-24 h-24 border border-white/20 rounded-full flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500 overflow-hidden relative">
+             {/* Abstract cloud effect */}
+             <div className="absolute inset-0 bg-gradient-to-tr from-gray-800 via-gray-900 to-black opacity-80 blur-xl animate-pulse" />
+             <div className="relative font-serif text-2xl text-amber-500">?</div>
+          </div>
+          
+          <div className="space-y-2 text-center">
+            <div className="text-3xl font-serif text-gray-300">Unknown Probability</div>
+            <div className="text-sm font-mono text-gray-400">Return: $20,000</div>
+            <div className="mt-6 inline-block px-4 py-2 border border-white/10 text-xs font-mono uppercase tracking-widest group-hover:bg-amber-600 group-hover:text-white group-hover:border-amber-600 transition-colors">
+              Engage Ambiguity
+            </div>
+          </div>
+        </button>
+
+      </div>
+
+      <div className="absolute bottom-12 text-center text-xs font-mono text-gray-600 max-w-md">
+        * By engaging, you allow Victor to map your sequential decision matrix against 40 years of market data.
+      </div>
+    </section>
+  );
+};
+
+// 5. Results Section
+const Results = ({ history }) => {
+  // Simple heuristic for demo
+  const ambiguityCount = history.filter(h => h.type === 'ambiguity').length;
+  const isAmbiguityTolerant = ambiguityCount >= 3;
+
+  return (
+    <section id="results" className="min-h-screen flex flex-col items-center justify-center bg-[#0a0a0a] text-white px-6 py-24">
+      <div className="max-w-4xl w-full space-y-12 animate-fade-in-up">
+        
+        {/* Header */}
+        <div className="border-b border-white/10 pb-8 flex flex-col md:flex-row justify-between items-end gap-6">
+          <div>
+            <div className="flex items-center gap-2 text-amber-500 mb-2">
+              <CheckCircle size={18} />
+              <span className="text-xs font-mono uppercase tracking-widest">Analysis Complete</span>
+            </div>
+            <h2 className="text-5xl font-serif">Your Cognitive Alpha</h2>
+          </div>
+          <div className="text-right">
+             <div className="text-xs font-mono text-gray-500 uppercase">Generated by Victor AI</div>
+             <div className="text-sm font-mono">{new Date().toLocaleDateString()}</div>
+          </div>
+        </div>
+
+        {/* Dashboard Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          {/* Stat 1 */}
+          <div className="p-8 border border-white/10 bg-[#111]">
+            <div className="text-xs font-mono text-gray-500 uppercase tracking-widest mb-4">Risk Appetite</div>
+            <div className="text-3xl font-serif mb-2">Moderate</div>
+            <div className="h-1 w-full bg-gray-800 mt-4 overflow-hidden">
+              <div className="h-full bg-white w-[60%]"></div>
+            </div>
+          </div>
+
+          {/* Stat 2 */}
+          <div className="p-8 border border-amber-500/30 bg-[#111]">
+            <div className="text-xs font-mono text-amber-500 uppercase tracking-widest mb-4">Ambiguity Tolerance</div>
+            <div className="text-3xl font-serif mb-2 text-white">
+              {isAmbiguityTolerant ? 'High (Top 5%)' : 'Standard'}
+            </div>
+            <div className="h-1 w-full bg-gray-800 mt-4 overflow-hidden">
+              <div className={`h-full bg-amber-500 ${isAmbiguityTolerant ? 'w-[90%]' : 'w-[40%]'}`}></div>
+            </div>
+            {isAmbiguityTolerant && (
+               <p className="mt-4 text-xs text-gray-400 font-mono">You do not fear the black box. You are paying for liquidity you do not need.</p>
+            )}
+          </div>
+
+          {/* Stat 3 */}
+          <div className="p-8 border border-white/10 bg-[#111]">
+            <div className="text-xs font-mono text-gray-500 uppercase tracking-widest mb-4">Sequential Bias</div>
+            <div className="text-3xl font-serif mb-2">Low</div>
+            <div className="h-1 w-full bg-gray-800 mt-4 overflow-hidden">
+              <div className="h-full bg-white w-[20%]"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* The Thesis */}
+        <div className="bg-[#151515] p-8 md:p-12 border-l-4 border-amber-500">
+          <h3 className="text-2xl font-serif mb-4">The Victor Thesis</h3>
+          <p className="text-gray-300 text-lg leading-relaxed">
+            {isAmbiguityTolerant 
+              ? "Your high Ambiguity Tolerance suggests you are psychologically equipped for Venture Capital Secondaries or Distressed Credit—assets that terrify the average investor but offer the asymmetry you naturally seek. Your current public market allocation is inefficient for your neurology."
+              : "Your data indicates a preference for quantifiable outcomes. While you aim for growth, volatility triggers a 'flight to safety' response. We recommend a Structured Note strategy that caps downside while preserving upside, aligning your portfolio with your sequential processing."
+            }
+          </p>
+          <div className="mt-8 flex items-center gap-4">
+            <button className="px-8 py-4 bg-white text-black font-mono text-xs uppercase tracking-widest hover:bg-amber-500 transition-colors">
+              Unlock Full Plan
+            </button>
+            <span className="text-xs font-mono text-gray-500 uppercase flex items-center gap-2">
+              <Lock size={12} /> Private Client Group Only
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+};
+
+// 6. Footer
+const Footer = () => (
+  <footer className="bg-black text-white py-12 border-t border-white/10 px-6">
+    <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+      <div className="text-center md:text-left">
+        <div className="text-2xl font-serif font-bold tracking-tighter mb-2">VICTOR.</div>
+        <p className="text-xs font-mono text-gray-500 uppercase tracking-widest">
+          London • San Francisco • New York
+        </p>
+      </div>
+      <div className="text-center md:text-right">
+        <p className="text-sm font-serif italic text-gray-400 mb-2">
+          "The market is efficient. The human mind is not. We fix the latter."
+        </p>
+        <p className="text-[10px] text-gray-600 uppercase max-w-md">
+          © 2025 Victor Artificial Intelligence Ltd. This is a demonstration based on the research of Banavar et al. Not financial advice.
+        </p>
+      </div>
+    </div>
+  </footer>
+);
+
+// --- Main App ---
+
+export default function App() {
+  const [currentPhase, setCurrentPhase] = useState('landing'); // landing, calibration, results
+  const [history, setHistory] = useState([]);
+
+  // Scroll to section helper
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const startCalibration = () => {
+    setCurrentPhase('calibration');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const finishCalibration = (gameHistory) => {
+    setHistory(gameHistory);
+    setCurrentPhase('results');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  return (
+    <div className="bg-black min-h-screen text-white selection:bg-amber-500 selection:text-black">
+      <Navigation scrollTo={scrollToSection} />
+      
+      {currentPhase === 'landing' && (
+        <>
+          <Hero onStart={() => scrollToSection('science')} />
+          <Rationale />
+          <div className="py-24 bg-[#0a0a0a] flex justify-center">
+            <button 
+              onClick={startCalibration}
+              className="px-12 py-6 border border-white/20 text-xl font-serif italic hover:bg-white hover:text-black transition-all duration-500"
+            >
+              Enter The Simulation
+            </button>
+          </div>
+        </>
+      )}
+
+      {currentPhase === 'calibration' && (
+        <CalibrationGame onComplete={finishCalibration} />
+      )}
+
+      {currentPhase === 'results' && (
+        <Results history={history} />
+      )}
+      
+      <Footer />
+    </div>
+  );
+}
